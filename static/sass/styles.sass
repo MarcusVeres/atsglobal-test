@@ -1,0 +1,62 @@
+
+// get our imports out of the way
+@import 'colors'
+@import 'constants'
+@import 'fonts'
+@import 'mixins'
+
+// HTML Elements
+
+body
+
+    height: 100%
+    width: 100%
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif
+    font-weight: 300
+    color: $text_color
+    padding: 2rem
+
+// Clocks
+
+.primary-time
+    font-size: 4rem    
+
+
+
+
+// Wrappers
+
+.page-wrapper 
+
+.clocks-wrapper
+    margin: 3rem 0
+
+
+// Sections
+
+section.settings
+
+    border-top: 1px solid $gray
+
+    .row
+        margin: 10px
+    
+
+section.clocks
+
+
+
+// Tablet Exclusive
+@media screen and (max-width: $breakpoint_tablet)
+
+
+
+// Phone Exclusive
+@media screen and (max-width: $breakpoint_phone)
+
+    body
+        padding: 0
+
+    .hide-from-mobile
+        display: none
+

@@ -1,0 +1,49 @@
+<section class="clocks">
+
+    <!-- set toronto time -->
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="col-xs-12 col-sm-4">
+            Set Toronto time: 
+            <span class="">
+                <input ng-model="input_time" type="text" class="" value="" placeholder="current time goes here" />
+            </span>
+            <span class="">
+                <button class="btn btn-primary" ng-click="cc.set_time( input_time )">Submit</button>
+            </span>
+        </div>
+    </div>
+    <!-- set toronto time -->
+
+    <!-- display world clocks -->
+    <div class="row clocks-wrapper">
+
+        <div class="col-sm-12 col-md-6">
+            <span class="col-xs-12 col-sm-4">
+                Toronto 
+            </span>
+            <span class="col-xs-8">
+                <span class="primary-time">{{ fuck }}</span>
+            </span>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+            <div class="col-xs-12 col-sm-6">
+                London
+                <span class="">
+                    {{ london_time }}
+                </span>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                Sydney
+                <span class="">
+                    {{ sydney_time }}
+                </span>
+            </div>
+        </div>
+
+    </div>
+    <!-- display world clocks -->
+
+</section>
+
