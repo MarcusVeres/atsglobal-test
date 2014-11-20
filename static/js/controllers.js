@@ -27,7 +27,7 @@ var appControllers = angular.module('appControllers', []);
                  '$scope',
         function( $scope )
         {
-            console.log('Loading MainController');
+            // console.log('Loading MainController');
 
             // --------------------------------------------
             // declare variables 
@@ -109,7 +109,7 @@ var appControllers = angular.module('appControllers', []);
 
             // sets the time offset for a particular city, relative to Toronto
             this.set_offset = function( city , offset ){
-                console.log(city);
+                // console.log(city);
                 var selector = city + '_offset';
                 var which_offset = 'new_offset_' + city;
                 _self[selector] = parseInt( $scope[which_offset] );
