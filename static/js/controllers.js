@@ -33,8 +33,6 @@ var appControllers = angular.module('appControllers', []);
         function( $scope )
         {
             console.log( "Loading MainController" );
-            
-
         }
     ]);
 
@@ -45,20 +43,24 @@ var appControllers = angular.module('appControllers', []);
         {
             console.log('Loading ClocksController');
 
+            // --------------------------------------------
+            // declare variables 
+
             var _self = this;                   // the easy way to avoid binding, apply and call when you don't need it
            
             this.update_cycle = 2000;           // how often the world clocks update, in milliseconds           
             this.update_interval = 'not set';   // the container for our interval
 
             this.toronto_time = new Date();        
-
             this.london_time = null;        
             this.london_offset = -6;
-
             this.sydney_time = null;        
             this.sydney_offset = -13;
 
-            // formats a date object
+            // --------------------------------------------
+            // time display
+
+            // formats a date object into a fancy
             this.format = function( date , offset )
             {
                 var offset = !offset ? 0 : offset;
@@ -79,37 +81,51 @@ var appControllers = angular.module('appControllers', []);
                 return string;                
             };
 
+            // updates all clocks based on time interval 
             this.update_times = function()
             {
-                console.log("updating world clocks...");
-
                 // update the time by the seconds interval
                  _self.toronto_time.setSeconds( _self.toronto_time.getSeconds() + _self.update_cycle/1000 );
 
                 // update our clocks
-                $scope.fuck = _self.format( _self.toronto_time , 0 );
+                $scope.toronto_time = this.format( this.toronto_time , 0 );
                 $scope.london_time = this.format( this.toronto_time , this.london_offset );
                 $scope.sydney_time = this.format( this.toronto_time , this.sydney_offset );
 
+                // update the DOM
                 $scope.$apply();
             };
 
-            // set functions
+            // --------------------------------------------
+            // setter functions
 
+            this.set_update_interval = function( interval )
+            {
+                this.update_cycle = interval;
+                this.stop_cycle();
+                this.start_cycle();
+            }
+
+            //
             this.set_time = function( time )
             {   
-                console.log("time is:", time);
                 var time_array = time.split(":");  
-                console.log("time_array is:", time_array);              
+
                 this.toronto_time.setHours( time_array[0] );
                 this.toronto_time.setMinutes( time_array[1] );
                 this.toronto_time.setSeconds( time_array[2] );
             }
 
+            // sets the time offset for a particular city, relative to Toronto
             this.set_offset = function( city , offset ){
+                console.log(city);
                 var selector = city + '_offset';
-                _self[selector] = offset;
+                var which_offset = 'new_offset_' + city;
+                _self[selector] = parseInt( $scope[which_offset] );
             }
+
+            // --------------------------------------------
+            // loop functions
 
             // function to start the cycle
             this.start_cycle = function(){
@@ -122,13 +138,13 @@ var appControllers = angular.module('appControllers', []);
                 clearInterval( _self.update_interval );
             };
 
-            // set everything up
+            // --------------------------------------------
+            // setup
+
             this.init = function(){
                 $scope.fuck = _self.toronto_time;
                 this.start_cycle();
             };
-
-            // Let's get this show on the road!
             this.init();
 
         }
@@ -144,24 +160,3 @@ var appControllers = angular.module('appControllers', []);
         }
     ]);
 
-
-
-// REference: 
-/*
-            swal({
-                title: "Chicken Killing Recipe",   
-                text: "Step 1: grab a chicken.\nStep 2: kill the chicken.",   
-                imageUrl: "http://lorempixel.com/200/200"
-            });
-
-
-appControllers.directive('mainNavigation' , function()
-{
-    return {
-        restrict: 'E',
-        templateUrl: '/static/partials/main-navigation.html',
-        controller: 'MainNavigationController',
-        controllerAs: 'mnc'
-    }
-});
-*/

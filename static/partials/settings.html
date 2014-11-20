@@ -4,35 +4,56 @@
         <h4>Settings</h4>
     </div>
 
-    <!-- first city -->
     <div class="row">
-        <span class="col-xs-12 col-sm-6">
-            <h5>Time difference for London</h5>
-        </span>
-        <span class="col-xs-12 col-sm-3">
-            <input class="form-control" type="text" placeholder="" value="+5" />
-        </span>
-        <span class="col-xs-12 col-sm-3">
-            <button class="btn btn-sm btn-primary form-control">Submit</button>
-        </span>
-        <div class="clearfix"></div>
-    </div>
-    <!-- first city -->
 
-    <!-- second city -->
-    <div class="row">
-        <span class="col-xs-12 col-sm-6">
-            <h5>Time difference for Sydney</h5>
-        </span>
-        <span class="col-xs-12 col-sm-3">
-            <input class="form-control" type="text" placeholder="" value="+5" />
-        </span>
-        <span class="col-xs-12 col-sm-3">
-            <button class="btn btn-sm btn-primary form-control">Submit</button>
-        </span>
-        <div class="clearfix"></div>
+        <div class="col-xs-12 col-md-6">
+            <!-- first city -->
+            <span class="col-xs-12 col-sm-6 col-md-5">
+                <h5>Time difference for London</h5>
+            </span>
+            <span class="col-xs-12 col-sm-3 col-md-4">
+                <input class="form-control" type="text" placeholder="{{ cc.london_offset }}" value="" ng-model="new_offset_london" />
+            </span>
+            <span class="col-xs-12 col-sm-3 col-md-3">
+                <button class="btn btn-sm btn-primary form-control" ng-click="cc.set_offset('london')">Submit</button>
+            </span>
+            <div class="clearfix"></div>
+            <!-- first city -->
+        </div>
+
+        <div class="col-xs-12 col-md-6">
+            <!-- second city -->
+            <span class="col-xs-12 col-sm-6 col-md-5">
+                <h5>Time difference for Sydney</h5>
+            </span>
+            <span class="col-xs-12 col-sm-3 col-md-4">
+                <input class="form-control" type="text" placeholder="{{ cc.sydney_offset }}" value="" ng-model="new_offset_sydney" />
+            </span>
+            <span class="col-xs-12 col-sm-3 col-md-3">
+                <button class="btn btn-sm btn-primary form-control" ng-click="cc.set_offset('sydney')">Submit</button>
+            </span>
+            <div class="clearfix"></div>
+            <!-- second city -->
+        </div>
+
     </div>
-    <!-- second city -->
+
+    <div class="row">
+
+        <div class="col-xs-12 col-md-6">
+            <span class="col-xs-12 col-sm-6 col-md-5">
+                <h5>Update Interval ( ms )</h5>
+            </span>
+            <span class="col-xs-12 col-sm-3 col-md-4">
+                <input class="form-control" type="text" placeholder="" value="" ng-model="new_update_interval" />
+            </span>
+            <span class="col-xs-12 col-sm-3 col-md-3">
+                <button class="btn btn-sm btn-primary form-control" ng-click="cc.set_update_interval( new_update_interval )">Submit</button>
+            </span>
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
 
 </settings>
 

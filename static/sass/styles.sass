@@ -19,18 +19,32 @@ body
 // Clocks
 
 .primary-time
-    font-size: 4rem    
+    font-size: 4em    
+    line-height: 1em
 
+.secondary-time
+    font-size: 2em
+    line-height: 1em
 
+.title
+    font-weight: bold
+    color: $gray
 
 
 // Wrappers
 
 .page-wrapper 
+    max-width: $max_width
+    margin: auto
 
 .clocks-wrapper
     margin: 3rem 0
+    padding-top: 2em
+    border-top: 1px solid $faint_gray
 
+.title
+    margin-top: 1em
+    border-top: 1px solid $light_gray
 
 // Sections
 
@@ -39,10 +53,12 @@ section.settings
     border-top: 1px solid $gray
 
     .row
-        margin: 10px
-    
+        margin: 10px 
 
 section.clocks
+
+.clocks-wrapper
+    vertical-align: bottom
 
 
 
