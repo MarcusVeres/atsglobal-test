@@ -34,7 +34,7 @@ var appControllers = angular.module('appControllers', []);
 
             var _self = this;                   // the easy way to avoid binding, apply and call when you don't need it
            
-            this.update_cycle = 5000;           // how often the world clocks update, in milliseconds           
+            this.update_cycle = 1000;           // how often the world clocks update, in milliseconds           
             this.update_interval = 'not set';   // the container for our interval
 
             this.toronto_time = new Date();        
