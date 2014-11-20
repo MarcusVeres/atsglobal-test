@@ -14,12 +14,13 @@ body
     font-family: 'Roboto', 'Helvetica Neue', sans-serif
     font-weight: 300
     color: $text_color
-    padding: 2rem
+    padding: 2em 2em 4em 2em
+
 
 // Clocks
 
 .primary-time
-    font-size: 4em    
+    font-size: 5em    
     line-height: 1em
 
 .secondary-time
@@ -30,6 +31,15 @@ body
     font-weight: bold
     color: $gray
 
+.section-title
+    color: $gray
+
+.logo
+    font-size: 7em
+    text-align: center
+    color: $orange
+    margin-bottom: 0.4em
+    border-bottom: 1px solid $light_gray
 
 // Wrappers
 
@@ -46,6 +56,9 @@ body
     margin-top: 1em
     border-top: 1px solid $light_gray
 
+.lowered
+    margin-top: 1em
+    
 // Sections
 
 section.settings
@@ -55,24 +68,42 @@ section.settings
     .row
         margin: 10px 
 
+    .city
+        margin-top: 1em
+
+        &:first-child
+            margin-top: 0
+
+    
+
 section.clocks
 
 .clocks-wrapper
     vertical-align: bottom
 
-
-
 // Tablet Exclusive
 @media screen and (max-width: $breakpoint_tablet)
 
-
+    .huge-margin
+        margin-bottom: 3em
+        &::after
+            content: '\00a0'
+            display: block
 
 // Phone Exclusive
 @media screen and (max-width: $breakpoint_phone)
 
-    body
-        padding: 0
+    .page-wrapper
+        max-width: 540px
 
-    .hide-from-mobile
-        display: none
+    .huge-margin
+        margin-bottom: 2em
 
+    .clocks-wrapper
+        text-align: right
+
+    input.form-control
+        margin-bottom: 0.6em
+
+    h5
+        margin-top: 1em

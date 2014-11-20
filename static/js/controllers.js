@@ -8,9 +8,7 @@ var appControllers = angular.module('appControllers', []);
     appControllers.directive('clocks' , function(){
         return {
             restrict: 'E',
-            templateUrl: '/static/partials/clocks.html',
-            controller: 'ClocksController',
-            controllerAs: 'cc'
+            templateUrl: '/static/partials/clocks.html'
         }
     });
 
@@ -18,37 +16,25 @@ var appControllers = angular.module('appControllers', []);
     appControllers.directive('settings' , function(){
         return {
             restrict: 'E',
-            templateUrl: '/static/partials/settings.html',
-            controller: 'SettingsController',
-            controllerAs: 'sc'
+            templateUrl: '/static/partials/settings.html'
         }
     });
 
 // -----------------------------------------------------------------------
-// Controllers
+// Controller(s)
 
-    // Main Controller
-    appControllers.controller('MainController', [
-                 '$scope', // lining things up this way makes it easy to catch typos when dealing with many directives
-        function( $scope )
-        {
-            console.log( "Loading MainController" );
-        }
-    ]);
-
-    // Clocks
-    appControllers.controller('ClocksController' , [
+    appControllers.controller('MainController' , [
                  '$scope',
         function( $scope )
         {
-            console.log('Loading ClocksController');
+            console.log('Loading MainController');
 
             // --------------------------------------------
             // declare variables 
 
             var _self = this;                   // the easy way to avoid binding, apply and call when you don't need it
            
-            this.update_cycle = 2000;           // how often the world clocks update, in milliseconds           
+            this.update_cycle = 5000;           // how often the world clocks update, in milliseconds           
             this.update_interval = 'not set';   // the container for our interval
 
             this.toronto_time = new Date();        
@@ -63,13 +49,16 @@ var appControllers = angular.module('appControllers', []);
             // formats a date object into a fancy
             this.format = function( date , offset )
             {
-                var offset = !offset ? 0 : offset;
-                var string = '';
+                var offset = !offset ? 0 : offset;      // determine offset, if offset is not set
+                var string = '';                        // prepare our return value
+ 
+                var d = new Date(date);                 // working copy of the date
+                d.setHours( date.getHours() + offset ); // compensate for the offset
 
-                var hours = date.getHours() + offset;
-                var minutes = date.getMinutes();
-                var seconds = date.getSeconds();
-                
+                var hours = d.getHours();
+                var minutes = d.getMinutes();
+                var seconds = d.getSeconds();
+
                 // if single digits, prepend a 0 , otherwise use the value as-is
                 string += ( hours < 10 ) ? ('0' + hours ) : hours;
                 string += ':';
@@ -77,7 +66,7 @@ var appControllers = angular.module('appControllers', []);
                 string += ':';
                 string += ( seconds < 10 ) ? ('0' + seconds ) : seconds;
 
-                console.log( "the string is:" , string );
+                // console.log( "the string is:" , string );
                 return string;                
             };
 
@@ -92,8 +81,10 @@ var appControllers = angular.module('appControllers', []);
                 $scope.london_time = this.format( this.toronto_time , this.london_offset );
                 $scope.sydney_time = this.format( this.toronto_time , this.sydney_offset );
 
-                // update the DOM
-                $scope.$apply();
+                // update the DOM if it is not already being updated
+                if(!$scope.$$phase) {
+                    $scope.$apply();
+                }
             };
 
             // --------------------------------------------
@@ -142,21 +133,18 @@ var appControllers = angular.module('appControllers', []);
             // setup
 
             this.init = function(){
-                $scope.fuck = _self.toronto_time;
-                this.start_cycle();
+                _self.update_times();   // execute immediately
+                this.start_cycle();     // begin loop
             };
             this.init();
 
-        }
-    ]);
+            // --------------------------------------------
+            // alert controller
 
-    // Settings
-    // Handles the setting of times , and refreshes 
-    appControllers.controller('SettingsController' , [
-                 '$scope',
-        function( $scope )
-        {
-            console.log('Loading SettingsController');
+            this.close_alert = function( index ){
+                document.getElementById('info-alert').remove();
+            }
+
         }
     ]);
 

@@ -2,16 +2,18 @@
 
     <!-- set toronto time -->
     <div class="row">
-        <div class="col-sm-6">
-            <span class="col-xs-12 col-sm-4">
-                <span class="title">Set Toronto time:</span> 
-            </span>
-            <span class="col-xs-12 col-sm-5">
-                <input ng-model="input_time" type="text" class="form-control" value="" placeholder="hh:mm:ss" />
-            </span>
-            <span class="col-xs-12 col-sm-3">
-                <button class="btn btn-primary" class="form-control" ng-click="cc.set_time( input_time )">Submit</button>
-            </span>
+        <div class="col-sm-12">
+            <div class="col-sm-12 col-md-6">
+                <span class="col-xs-12 col-sm-4">
+                    <h5>Set Toronto Time</h5>
+                </span>
+                <span class="col-xs-12 col-sm-5">
+                    <input ng-model="input_time" type="text" class="form-control" value="" placeholder="hh:mm:ss" />
+                </span>
+                <span class="col-xs-12 col-sm-3">
+                    <button class="btn btn-default form-control" ng-click="mc.set_time( input_time )">Submit</button>
+                </span>
+            </div>
         </div>
     </div>
     <!-- set toronto time -->
@@ -19,7 +21,7 @@
     <!-- display world clocks -->
     <div class="row clocks-wrapper">
 
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-6 huge-margin">
             <div class="col-xs-12">
                 <span class="title">Toronto</span>
                 <span class="">
