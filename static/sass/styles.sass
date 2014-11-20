@@ -71,8 +71,6 @@ section.settings
     .city
         margin-top: 1em
 
-        &:first-child
-            margin-top: 0
 
     
 
@@ -89,6 +87,10 @@ section.clocks
         &::after
             content: '\00a0'
             display: block
+
+    section.settings
+        .city:first-child
+            margin-top: 0
 
 // Phone Exclusive
 @media screen and (max-width: $breakpoint_phone)
